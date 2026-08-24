@@ -67,7 +67,7 @@
 
 (defchords mhbc $chord-timeout
   ;; Left individual keys
-  (s) (t! charmod s lalt)
+  (s) (t! charmod s lmet)
   (d) (t! charmod d lsft)
   (f) (t! charmod f lctl)
   (x) (t! charmod x ralt)
@@ -77,7 +77,7 @@
   ;; Right individual keys
   (j) (t! charmod j rctl)
   (k) (t! charmod k rsft)
-  (l) (t! charmod l lalt)
+  (l) (t! charmod l lmet)
   (m) (t! charmod m (layer-while-held fumbol))
   (,) ,
   (.) (t! charmod . ralt)
@@ -127,14 +127,14 @@
   o (chord mtr o)
 
   ;; Home row modifiers
-  a (t! charmod a lmet)
+  a (t! charmod a lalt)
   s (chord mhbc s)
   d (chord mhbc d)
   f (chord mhbc f)
   j (chord mhbc j)
   k (chord mhbc k)
   l (chord mhbc l)
-  ; (t! charmod ; rmet)
+  ; (t! charmod ; ralt)
 
   ;; Bottom row modifiers
   z (t! charmod z lctl) 
@@ -159,8 +159,8 @@
   p pgup
 
   ;; Modifiers
-  a lmet
-  s lalt
+  a lalt
+  s lmet
   d lsft
   f lctl
   g comp
@@ -200,7 +200,7 @@
 
 ;; Chords for numbers and math symbols on the home row
 (defchords fhl $chord-timeout
-  (s    ) (t! charmod 2 lalt)
+  (s    ) (t! charmod 2 lmet)
   (  d  ) (t! charmod 3 lsft)
   (    f) (t! charmod 4 lctl)
   (s d  ) kp-
@@ -211,7 +211,7 @@
 (defchords fhr $chord-timeout
   (j    ) (t! charmod 7 rctl)
   (  k  ) (t! charmod 8 rsft)
-  (    l) (t! charmod 9 lalt)
+  (    l) (t! charmod 9 lmet)
   (j k  ) kp/
   (  k l) kp*
   (j   l) .
@@ -243,7 +243,7 @@
   p f10
 
   ;; Home row: Numbers with mods and symbols
-  a (t! charmod 1 lmet)
+  a (t! charmod 1 lalt)
   s (chord fhl s)
   d (chord fhl d)
   f (chord fhl f)
@@ -252,7 +252,7 @@
   j (chord fhr j)
   k (chord fhr k)
   l (chord fhr l)
-  ; (t! charmod 0 rmet)
+  ; (t! charmod 0 ralt)
 
   ;; Bottom row: Symbols
   z (t! charmod lsgt lctl)
