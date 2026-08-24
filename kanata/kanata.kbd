@@ -152,11 +152,11 @@
 
 (deflayermap (extend)
   ;; Navigation, media
-  y ins
+  y pgup
   u home
   i up
   o end
-  p pgup
+  p ins
 
   ;; Modifiers
   a lalt
@@ -166,11 +166,11 @@
   g comp
 
   ;; Navigation & Media
-  h esc
+  h pgdn
   j left
   k down
   l rght
-  ; pgdn
+  ; esc
   z mute
   x vold
   c volu
