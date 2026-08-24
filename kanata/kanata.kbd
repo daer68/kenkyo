@@ -21,7 +21,9 @@
 (defvar
   ;; Timing variables for home row mods and chords
   streak-count 3       ;; Number of keys to consider a "typing streak"
-  streak-time 600      ;; Max time (ms) window to maintain a streak
+  streak-time 600      ;; Max time (ms) window to maintain a streak (letters)
+  streak-time-spc 150  ;; Shorter streak window for Space, so a brief pause arms
+                       ;; the extend layer. Set to 0 to disable the guard entirely.
   tap-timeout 200      ;; Max time (ms) for a tap to be recognized
   hold-timeout 300     ;; Time (ms) to wait before a hold is recognized
   chord-timeout 35     ;; Window (ms) to press keys together for a chord
@@ -40,13 +42,25 @@
   )
 )
 
+;; Same guard as 'flowtap' but with the shorter Space streak window.
+(deftemplate flowtap-spc (flow tap)
+  (switch
+    ((key-timing $streak-count less-than $streak-time-spc)) $flow break
+    () $tap break
+  )
+)
+
 ;; 'charmod' implements home row modifiers.
 ;; It uses 'flowtap' to avoid mod misfires during fast typing.
 ;; tap-hold-release-timeout resolves as a hold if another key is pressed and released.
+;; NOTE: tap-hold-release (no $timeout-action) instead of
+;; tap-hold-release-timeout. Once $hold-timeout elapses the modifier engages
+;; and STAYS engaged until the key is released -- it no longer falls back to
+;; emitting the letter. Trade-off: holding a letter no longer auto-repeats it.
 (deftemplate charmod (char mod)
   (t! flowtap
     $char
-    (tap-hold-release-timeout $tap-timeout $hold-timeout $char $mod $char reset-timeout-on-press)
+    (tap-hold-release $tap-timeout $hold-timeout $char $mod)
   )
 )
 
@@ -82,8 +96,11 @@
   (,) ,
   (.) (t! charmod . ralt)
 
-  ;; Space individual key
-  (spc) (t! charmod spc (layer-while-held extend))
+  ;; Space individual key: short streak guard + sticky hold, so holding Space
+  ;; enters 'extend' and stays there until Space is released.
+  (spc) (t! flowtap-spc
+          spc
+          (tap-hold-release $tap-timeout $hold-timeout spc (layer-while-held extend)))
 
   ;; Space-anchored one-shot modifier chords.
   ;; Tapping a modifier key (d/k for Shift, v/m for Fumbol, x/. for AltGr) together with Space
