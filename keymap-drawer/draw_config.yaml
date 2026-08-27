@@ -1,0 +1,4 @@
+draw_config:
+  svg_extra_style: |
+    rect.key.mod { fill: #cfe8fa; }
+    rect.key.layer { fill: #fbd9a5; }
