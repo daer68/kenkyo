@@ -12,6 +12,7 @@
 )
 
 (defsrc
+  caps
   q w e r t y u i o p
   a s d f g h j k l ;
   z x c v b n m , . /
@@ -137,6 +138,8 @@
 )
 
 (deflayermap (main)
+  caps esc
+
   ;; Top row chords
   w (chord mtl w)
   e (chord mtl e)
@@ -168,6 +171,8 @@
 )
 
 (deflayermap (extend)
+  caps esc
+
   ;; Navigation, media
   y pgup
   u home
@@ -222,7 +227,7 @@
   (    f) (t! charmod 4 lctl)
   (s d  ) kp-
   (  d f) kp+
-  (s   f) 🔢₌
+  (s   f) 🔢₌ ;; kanata's alias for NumpadEqual/KEY_KPEQUAL -- not a typo
 )
 
 (defchords fhr $chord-timeout
@@ -231,7 +236,7 @@
   (    l) (t! charmod 9 lmet)
   (j k  ) kp/
   (  k l) kp*
-  (j   l) .
+  (j   l) kp.
 )
 
 (defchords fbl $chord-timeout
@@ -247,6 +252,8 @@
 )
 
 (deflayermap (fumbol)
+  caps esc
+
   ;; Top row: Function keys
   q f1
   w (chord ftl w)

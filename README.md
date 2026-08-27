@@ -72,6 +72,10 @@ rather than parsed from the config, since keymap-drawer's Kanata support is expe
 - **Extend layer navigation keys reshuffled:** `Y`/`U`/`I`/`O`/`P` and `H`/`;` were rearranged (e.g. `PgUp` moved from
   `P` to `Y`, `Esc` moved from `H` to `;`) to better match this fork's muscle memory; functionally equivalent to
   upstream, just remapped to different fingers.
+- **Caps Lock remapped to Escape** on every layer — upstream leaves Caps Lock untouched.
+- **Fumbol's `J`+`L` chord now sends the numpad decimal point (`kp.`) instead of a plain `.`**, matching the rest of
+  that chord cluster (`kp-`, `kp+`, `kp/`, `kp*`, and the numpad-equals chord on `S`+`F`), instead of duplicating a
+  period that was already available without a chord.
 
 ## License
 
